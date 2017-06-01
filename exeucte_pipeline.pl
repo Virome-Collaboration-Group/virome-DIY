@@ -37,10 +37,9 @@ B<--threads>
     Defaults to 1.
 
 B<--version>
-    Optional. Run specific version of VIROME-DIY analysis pipeline.  By default
-    latest version of VIROME-DIY analysis pipeline will be executed.  check
+    Optional. Run specific version of VIROME-DIY analysis pipeline.  Check
         https://hub.docker.com/r/virome/virome-pipeline/tags/
-    For all other version options
+    For all other version options.  Current version is 1.0
 
 B<--test_mode>
     Optional. Run container in test-mode to confirm your environment is setup.
@@ -155,7 +154,7 @@ sub check_parameters {
         }
     }
 
-    $options{version} = "latest" unless(defined $options{version});
+    $options{version} = "1.0" unless(defined $options{version});
     $options{theads} = 1 unless(defined $options{threads});
 }
 ###############################################################################

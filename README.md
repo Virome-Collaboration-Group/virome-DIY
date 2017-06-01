@@ -10,6 +10,10 @@ VIROME-DIY is a docker-based version of the VIROME analysis pipeline that allows
 VIROME-DIY pipeline has been tested on a Linux computer server with 24 cpus, 128GB memory.  However, the pipeline has been designed to run on modest
 desktop or laptop with at least 8GB of free memory and at least 200GB of storage space [mention of subject_db size alone?]
 
+### Version
+
+* v1.0 2017/05
+
 ### Requirements
 #### Software
 - [Docker](https://docs.docker.com/installation/) for Linux / Windows / OSX
