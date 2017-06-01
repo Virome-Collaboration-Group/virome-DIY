@@ -49,14 +49,14 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
 * --version=
 
     Optional. Run specific version of VIROME-DIY analysis pipeline.  By default
-    latest version of VIROME-DIY analysis pipeline will be executed.  check
+    latest version of VIROME-DIY analysis pipeline will be executed.  Check
     [all available tags](https://hub.docker.com/r/virome/virome-pipeline/tags/)
-    for all other version options
+    for **_version_** options
 
 * --test_mode
 
     Optional. Run container in test-mode to confirm your environment is setup.
-    If running container in test-mode **input_file** parameter is not required.
+    If running container in test-mode **_input_file_** parameter is not required.
 
 * --help, -h
 
@@ -64,7 +64,7 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
 
 ### OUTPUT
 Upon successful completion of VIROME-DIY analysis pipeline a complete tar package
-will be available in the **output_dir** with prefix of **input_file** and a
+will be available in the **_output_dir_** with prefix of **_input_file_** and a
 timestamp.  This file can be uploaded to
 [VIROME Submission portal](http://virome.dbi.udel.edu/submission) and
 results can be view data using [VIROME data exploration app](http://virome.dbi.udel.edu/app)
