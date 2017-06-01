@@ -12,7 +12,7 @@ desktop or laptop with at least 8GB of free memory and at least 200GB of storage
 
 ### Version
 
-* v1.0 2017/05
+* 1.0 -> 2017/05
 
 ### Requirements
 #### Software
