@@ -29,31 +29,37 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
 
 #### OPTIONS
 * --input_file=, -i
+
     Required. Complete path of input file that need to be analyzed via VIROME-DIY
     docker image
 
 * --output_dir=, -o
+
     Required. Complete path of output location where all results and temp files are stored
     Temporary files will be deleted up on successful completion of VIROME-DIY analysis pipeline.
     Directory will be create if it does not exists.
 
 * --database_dir=, -d
+
     Required. Complete path of directory where subject_db related to VIROME-DIY is located
     (either if you previously ran VIROME-DIY container or manually downloaded that database.)
     If subject_db are not found in the location provided they will be downloaded at run time.
     Directory will be create if it does not exists
 
 * --version=
+
     Optional. Run specific version of VIROME-DIY analysis pipeline.  By default
     latest version of VIROME-DIY analysis pipeline will be executed.  check
     [all available tags](https://hub.docker.com/r/virome/virome-pipeline/tags/)
     for all other version options
 
 * --test_mode
+
     Optional. Run container in test-mode to confirm your environment is setup.
     If running container in test-mode **input_file** parameter is not required.
 
 * --help, -h
+
     Display usage and help message.
 
 ### OUTPUT
