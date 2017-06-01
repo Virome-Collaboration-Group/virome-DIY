@@ -3,12 +3,11 @@
 ### Introduction
 VIROME Do It Yourself Analysis Pipeline
 
-Analysis of viral shotgun metagenomic data can be especially challenging due to the relative under-representation of viral genetic diversity in sequence databases.   The Viral Information Resource for Metagenome Exploration (VIROME - http://virome.dbi.udel.edu) is a bioinformatics analysis pipeline and web-visualization environment that has been designed to maximize the utility of viral metagenomes by providing functional, taxonomic, and environmental context for metagenomic ORF sequences.  To provide the high-level of sensitivity that this analysis pipeline requires, has traditionally required it to be run on large high performance compute clusters resulting in a lengthy analysis queue.  
+Analysis of viral shotgun metagenomic data can be especially challenging due to the relative under-representation of viral genetic diversity in sequence databases.   The Viral Information Resource for Metagenome Exploration (VIROME - http://virome.dbi.udel.edu) is a bioinformatics analysis pipeline and web-visualization environment that has been designed to maximize the utility of viral metagenomes by providing functional, taxonomic, and environmental context for metagenomic ORF sequences.  To provide the high-level of sensitivity that this analysis pipeline requires, has traditionally required it to be run on large high performance compute clusters resulting in a lengthy analysis queue.
 
-VIROME-DIY is a docker-based version of the VIROME analysis pipeline that allows users to bypass the virome analysis queue and run the analysis on their own.  Recent advances in our analysis pipeline, including the development of RUBBLE (Restricted clUster BLAST-Based PipeLinE), have greatly reduced the computational requirements for our pipeline allowing the VIROME-DIY pipeline to run on a single server or powerful desktop computer.  Once completed the results can be uploaded to the VIROME submission portal allowing users to explore, compare, and bin their results using our web-based visualization environment.
+VIROME-DIY is a docker-based version of the VIROME analysis pipeline that allows users to bypass the virome analysis queue and run the analysis on their own.  Recent advances in our analysis pipeline, including the development of [RUBBLE](https://github.com/dnasko/rubble) (Restricted clUster BLAST-Based PipeLinE), have greatly reduced the computational requirements for our pipeline allowing the VIROME-DIY pipeline to run on a single server or powerful desktop computer.  Once completed the results can be uploaded to the VIROME submission portal allowing users to explore, compare, and bin their results using our web-based visualization environment.
 
-VIROME-DIY pipeline has been tested on a Linux computer server with 24 cpus, 128GB memory.  However, the pipeline has been designed to run on modest
-desktop or laptop with at least 8GB of free memory and at least 200GB of storage space [mention of subject_db size alone?]
+The VIROME-DIY pipeline has been tested on a Linux server with 24 CPUs and 128 GB memory.  However, the pipeline has been designed to run on a medium-sized Linux server, but is capable of running on a well equipped desktop or laptop with (e.g. at least 8GB of free memory and at least 200GB of storage space).
 
 ### Version
 
@@ -77,3 +76,5 @@ will be available in the **_output_dir_** with prefix of **_input_file_** and a
 timestamp.  This file can be uploaded to
 [VIROME Submission portal](http://virome.dbi.udel.edu/submission) and
 results can be view data using [VIROME data exploration app](http://virome.dbi.udel.edu/app)
+
+Rev 01Jun2017 DJN
