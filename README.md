@@ -51,9 +51,8 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
 
 * --threads=N
 
-    Optional. Improve performance by running VIROME-DIY multi-threaded. Note you need approx. 1.5 GB
+    Optional (Default = 1). Improve performance by running VIROME-DIY multi-threaded. Note you need approx. 1.5 GB
 	of RAM for each thread you request. More specifically you need *ceiling(n threads / 4)\*5.5 GB*.
-    Defaults to 1.
 
 * --version=SSS
 
