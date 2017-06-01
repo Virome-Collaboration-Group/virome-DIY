@@ -7,16 +7,16 @@
 
 =head1 SYNOPSIS
 
-USAGE: execute_pipeline.pl --input=/path/to/input_file.fasta
+USAGE: execute_pipeline.pl --input_file=/path/to/input_file.fasta
                            --output_dir=/path/to/output_dir
                            --database_dir=/path/to/subject_db
                            [--version=1.0
-                            --test-mode
+                            --test_mode
                             --help]
 
 =head1 OPTIONS
 
-B<--input, -i>
+B<--input_file, -i>
     Required. Complete path of input file that need to be analyzed via VIROME-DIY
     docker image
 
@@ -37,9 +37,9 @@ B<--version>
         https://hub.docker.com/r/virome/virome-pipeline/tags/
     For all other version options
 
-B<--test-mode, -t>
+B<--test_mode>
     Optional. Run container in test-mode to confirm your environment is setup.
-    If running container in test-mode input parameter is not required.
+    If running container in test-mode input_file parameter is not required.
 
 B<--help, -h>
     This help message
@@ -81,11 +81,11 @@ use Getopt::Long qw(:config no_ignore_case no_auto_abbrev pass_through);
 
 my %options = ();
 my $results = GetOptions (\%options,
-                          'input|i=s',
+                          'input_file|i=s',
                           'output_dir|o=s',
                           'database_dir|d=s',
                           'version=s',
-                          'test-mode',
+                          'test_mode',
                           'help|h') || pod2usage();
 
 #### display documentation
@@ -110,16 +110,16 @@ $cmd = "docker run -ti --rm -v $options{output_dir}:/opt/output";
 $cmd .= " -v $options{database_dir}:/opt/database";
 
 
-if ($options{'test-mode'}) {
+if ($options{test_mode}) {
     $cmd .= " --entrypoint execute_test_pipeline.sh";
 }
 
 $cmd .= "virome-pipeline:$options{version}";
 
-if ($options{'test-mode'}) {
+if ($options{test-mode}) {
     $cmd .= " --test-case1";
 } else {
-    $cmd .= " $options{input}";
+    $cmd .= " $options{input_file}";
 }
 execute_cmd($cmd);
 
@@ -139,8 +139,8 @@ sub check_parameters {
     my @required = qw(output_dir database_dir);
 
     #### if running in test-mode input is not required.
-    unless(defined $options{'test-mode'}){
-        push(@required, "input");
+    unless(defined $options{'test_mode'}){
+        push(@required, "input_file");
     }
 
     for my $key ( @required ) {
