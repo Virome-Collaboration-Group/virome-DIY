@@ -46,7 +46,11 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
     If subject_db are not found in the location provided they will be downloaded at run time.
     Directory will be create if it does not exists
 
-* --version=
+* --threads=N
+    Optional. Improve performance by running VIROME-DIY multi-threaded [note on memory here?]
+    Defaults to 1.
+
+* --version=NNN
 
     Optional. Run specific version of VIROME-DIY analysis pipeline.  By default
     latest version of VIROME-DIY analysis pipeline will be executed.  Check

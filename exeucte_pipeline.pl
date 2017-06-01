@@ -10,7 +10,8 @@
 USAGE: execute_pipeline.pl --input_file=/path/to/input_file.fasta
                            --output_dir=/path/to/output_dir
                            --database_dir=/path/to/subject_db
-                           [--version=1.0
+                           [--threads=1
+                            --version=1.0
                             --test_mode
                             --help]
 
@@ -30,6 +31,10 @@ B<--database_dir, -d>
     (either if you previously ran VIROME-DIY container or manually downloaded that database.)
     If subject_db are not found in the location provided they will be downloaded at run time.
     Directory will be create if it does not exists
+
+B<--threads>
+    Optional. Improve performance by running VIROME-DIY multi-threaded [note on memory here?]
+    Defaults to 1.
 
 B<--version>
     Optional. Run specific version of VIROME-DIY analysis pipeline.  By default
@@ -84,6 +89,7 @@ my $results = GetOptions (\%options,
                           'input_file|i=s',
                           'output_dir|o=s',
                           'database_dir|d=s',
+                          'threads=i',
                           'version=s',
                           'test_mode',
                           'help|h') || pod2usage();
@@ -114,7 +120,7 @@ if ($options{test_mode}) {
     $cmd .= " --entrypoint execute_test_pipeline.sh";
 }
 
-$cmd .= "virome-pipeline:$options{version}";
+$cmd .= "virome-pipeline:$options{version}  --threads=$options{threads}";
 
 if ($options{test-mode}) {
     $cmd .= " --test-case1";
@@ -150,6 +156,7 @@ sub check_parameters {
     }
 
     $options{version} = "latest" unless(defined $options{version});
+    $options{theads} = 1 unless(defined $options{threads});
 }
 ###############################################################################
 sub create_output_dir {
