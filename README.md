@@ -47,10 +47,11 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
     Directory will be create if it does not exists
 
 * --threads=N
+
     Optional. Improve performance by running VIROME-DIY multi-threaded [note on memory here?]
     Defaults to 1.
 
-* --version=NNN
+* --version=SSS
 
     Optional. Run specific version of VIROME-DIY analysis pipeline.  By default
     latest version of VIROME-DIY analysis pipeline will be executed.  Check
