@@ -72,7 +72,7 @@ execute_pipeline.pl --output_dir=/dir/to/store/output --database_dir=/dir/to/sto
     Display usage and help message.
 
 ### OUTPUT
-Upon successful completion of VIROME-DIY analysis pipeline a complete tar package
+Upon successful completion of VIROME-DIY analysis pipeline a compressed tar package
 will be available in the **_output_dir_** with prefix of **_input_file_** and a
 timestamp.  This file can be uploaded to
 [VIROME Submission portal](http://virome.dbi.udel.edu/submission) and

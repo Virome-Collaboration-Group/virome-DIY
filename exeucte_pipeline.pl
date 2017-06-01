@@ -116,12 +116,12 @@ $cmd .= " -v $options{database_dir}:/opt/database";
 
 
 if ($options{test_mode}) {
-    $cmd .= " --entrypoint execute_test_pipeline.sh";
+    $cmd .= " --entrypoint /opt/scripts/execute_pipeline_test.sh";
 }
 
-$cmd .= "virome-pipeline:$options{version}  --threads=$options{threads}";
+$cmd .= " virome/virome-pipeline:$options{version} --threads=$options{threads}";
 
-if ($options{test-mode}) {
+if ($options{test_mode}) {
     $cmd .= " --test-case1";
 } else {
     $cmd .= " $options{input_file}";
@@ -165,7 +165,7 @@ sub create_output_dir {
     mkpath($options{output_dir}."/logs", 0, '0755');
 
     #### make database_dir if it does not exists
-    mkpath($optsion{database_dir}, 0, '0755');
+    mkpath($options{database_dir}, 0, '0755');
 }
 
 #############################################################################
