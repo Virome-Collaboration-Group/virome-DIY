@@ -9,8 +9,17 @@ VIROME-DIY is a docker-based version of the VIROME analysis pipeline that allows
 
 The VIROME-DIY pipeline has been tested on a Linux server with 24 CPUs and 128 GB memory.  However, the pipeline has been designed to run on a medium-sized Linux server, but is capable of running on a well equipped desktop (e.g. at least 8 CPUs, 16GB of free memory, and 200GB of storage space).
 
-The amount of RAM required to run a pipeline is approximately 1.5 GB per CPU used. The exact amount of RAM required for a pipeline run can be calculated as *ceiling*(n CPUs / 4)*5.5 GB. E.g.: 1 CPU would need 5.5 GB; 5 CPUs would need 11 GB; and 8 CPUs would also need 11 GB.
+The amount of RAM required to run a pipeline is contingent upon the number of CPUs you use to run it. It's approximately 1.5 GB per CPU used, but that's not very exact. The *exact* amount of RAM required for a pipeline run is calculated as *ceiling*(n CPUs / 4)*5.5 GB. Here are some examples:
 
+| n CPUs | Total RAM Required |
+|:------:| ------------------:|
+|    1   | 5.5 GB             |
+|    2   | 5.5 GB             |
+|    4   | 11  GB             |
+|    6   | 11  GB             |
+|    8   | 11  GB             |
+|   16   | 22  GB             |
+|   32   | 44  GB             |
 
 ### Version
 
