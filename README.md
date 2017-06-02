@@ -7,7 +7,10 @@ Analysis of viral shotgun metagenomic data can be especially challenging due to 
 
 VIROME-DIY is a docker-based version of the VIROME analysis pipeline that allows users to bypass the virome analysis queue and run the analysis on their own.  Recent advances in our analysis pipeline, including the development of [RUBBLE](https://github.com/dnasko/rubble) (Restricted clUster BLAST-Based PipeLinE), have greatly reduced the computational requirements for our pipeline allowing the VIROME-DIY pipeline to run on a single server or powerful desktop computer.  Once completed the results can be uploaded to the VIROME submission portal allowing users to explore, compare, and bin their results using our web-based visualization environment.
 
-The VIROME-DIY pipeline has been tested on a Linux server with 24 CPUs and 128 GB memory.  However, the pipeline has been designed to run on a medium-sized Linux server, but is capable of running on a well equipped desktop or laptop with (e.g. at least 8GB of free memory and at least 200GB of storage space).
+The VIROME-DIY pipeline has been tested on a Linux server with 24 CPUs and 128 GB memory.  However, the pipeline has been designed to run on a medium-sized Linux server, but is capable of running on a well equipped desktop (e.g. at least 8 CPUs, 16GB of free memory, and 200GB of storage space).
+
+The amount of RAM required to run a pipeline is approximately 1.5 GB per CPU used. The exact amount of RAM required for a pipeline run can be calculated as *ceiling*(n CPUs / 4)*5.5 GB. E.g.: 1 CPU would need 5.5 GB; 5 CPUs would need 11 GB; and 8 CPUs would also need 11 GB.
+
 
 ### Version
 
@@ -77,4 +80,4 @@ timestamp.  This file can be uploaded to
 [VIROME Submission portal](http://virome.dbi.udel.edu/submission) and
 results can be view data using [VIROME data exploration app](http://virome.dbi.udel.edu/app)
 
-Rev 01Jun2017 DJN
+*Rev 02Jun2017 DJN*
