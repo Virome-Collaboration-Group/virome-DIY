@@ -155,7 +155,7 @@ sub check_parameters {
     }
 
     $options{version} = "latest" unless(defined $options{version});
-    $options{theads} = 1 unless(defined $options{threads});
+    $options{threads} = 1 unless(defined $options{threads});
 }
 ###############################################################################
 sub create_output_dir {
