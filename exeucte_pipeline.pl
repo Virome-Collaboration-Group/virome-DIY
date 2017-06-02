@@ -154,7 +154,7 @@ sub check_parameters {
         }
     }
 
-    $options{version} = "1.0" unless(defined $options{version});
+    $options{version} = "latest" unless(defined $options{version});
     $options{theads} = 1 unless(defined $options{threads});
 }
 ###############################################################################
