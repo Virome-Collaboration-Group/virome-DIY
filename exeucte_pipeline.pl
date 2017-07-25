@@ -79,6 +79,7 @@ use strict;
 use warnings;
 use File::Basename;
 use File::Path;
+use File::Spec;
 use Data::Dumper;
 use Pod::Usage;
 use Getopt::Long qw(:config no_ignore_case no_auto_abbrev pass_through);
@@ -100,6 +101,14 @@ if( $options{'help'} ){
 
 #### make sure everything passed was peachy if not running in test mode
 &check_parameters(\%options);
+
+#### convert all file paths to absolute file paths
+$options{output_dir} = File::Spec->rel2abs( $options{output_dir} ) ;
+$options{database_dir} = File::Spec->rel2abs( $options{database_dir} ) ;
+$options{input_file} = File::Spec->rel2abs( $options{input_file} ) ;
+$options{output_dir}   =~ s/\.\.\/.*?\///g; ## Need to do this to get rid of ../blah/../blah
+$options{database_dir} =~ s/\.\.\/.*?\///g; ## Again.
+$options{input_file}   =~ s/\.\.\/.*?\///g; ## And again.
 
 #### create output dir if they don't exists.
 &create_output_dir();
