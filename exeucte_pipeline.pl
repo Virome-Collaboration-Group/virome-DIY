@@ -120,7 +120,7 @@ my $cmd = "docker pull virome/virome-pipeline:$options{version}";
 execute_cmd($cmd);
 
 #### create a docker run statement
-$cmd = "docker run -ti --rm -u `id -u` -v $options{output_dir}:/opt/output";
+$cmd = "docker run -ti --rm -u `id -u`:`id -g` -v $options{output_dir}:/opt/output";
 $cmd .= " -v $options{database_dir}:/opt/database";
 
 if ($options{test_mode}) {
