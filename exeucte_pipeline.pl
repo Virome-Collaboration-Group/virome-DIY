@@ -78,7 +78,7 @@ B<--help, -h>
 use strict;
 use warnings;
 use File::Basename;
-use File::Path;
+use File::Path qw(make_path remove_tree mkpath);
 use File::Spec;
 use Data::Dumper;
 use Pod::Usage;
@@ -170,10 +170,10 @@ sub create_output_dir {
     my $dir = shift;
 
     #### make output_dir and output_dir/logs if it does not exists
-    mkpath($options{output_dir}."/logs", 0, '0755');
+    make_path($options{output_dir});
 
     #### make database_dir if it does not exists
-    mkpath($options{database_dir}, 0, '0755');
+    make_path($options{database_dir});
 }
 
 #############################################################################
