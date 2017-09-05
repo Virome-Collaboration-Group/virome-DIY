@@ -113,6 +113,8 @@ $options{input_file}   =~ s/\.\.\/.*?\///g; ## And again.
 #### create output dir if they don't exists.
 &create_output_dir();
 
+my($input_dir, $input_file, $input_ext) = fileparse($options{input_file}, qr/\.[^.]*/);
+
 #### TODO check docker install.
 
 #### pull latest docker image.
@@ -122,6 +124,7 @@ execute_cmd($cmd);
 #### create a docker run statement
 $cmd = "docker run -ti --rm -u `id -u`:`id -g` -v $options{output_dir}:/opt/output";
 $cmd .= " -v $options{database_dir}:/opt/database";
+$cmd .= " -v $input_dir:/opt/input";
 
 if ($options{test_mode}) {
     $cmd .= " --entrypoint /opt/scripts/execute_pipeline_test.sh";
@@ -132,7 +135,7 @@ $cmd .= " virome/virome-pipeline:$options{version} --threads=$options{threads}";
 if ($options{test_mode}) {
     $cmd .= " --test-case1";
 } else {
-    $cmd .= " $options{input_file}";
+    $cmd .= " /opt/input/$input_file.$input_ext";
 }
 execute_cmd($cmd);
 
