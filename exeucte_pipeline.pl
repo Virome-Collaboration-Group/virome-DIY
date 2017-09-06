@@ -113,7 +113,7 @@ $options{input_file}   =~ s/\.\.\/.*?\///g; ## And again.
 #### create output dir if they don't exists.
 &create_output_dir();
 
-my($input_dir, $input_file, $input_ext) = fileparse($options{input_file}, qr/\.[^.]*/);
+my($input_file, $input_dir, $input_ext) = fileparse($options{input_file}, qr/\.[^.]*/);
 
 #### TODO check docker install.
 
@@ -135,7 +135,8 @@ $cmd .= " virome/virome-pipeline:$options{version} --threads=$options{threads}";
 if ($options{test_mode}) {
     $cmd .= " --test-case1";
 } else {
-    $cmd .= " /opt/input/$input_file.$input_ext";
+    #### input_ext contains . so do add extra while recreating filename.
+    $cmd .= " /opt/input/$input_file"."$input_ext";
 }
 execute_cmd($cmd);
 
