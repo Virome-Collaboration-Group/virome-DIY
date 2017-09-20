@@ -92,12 +92,15 @@ my $results = GetOptions (\%options,
                           'threads=i',
                           'version=s',
                           'test_mode',
+                          'debug',
                           'help|h') || pod2usage();
 
 #### display documentation
 if( $options{'help'} ){
     pod2usage( {-exitval => 0, -verbose => 2, -output => \*STDERR} );
 }
+
+my $hidden_args = "";
 
 #### make sure everything passed was peachy if not running in test mode
 &check_parameters(\%options);
@@ -122,7 +125,13 @@ my $cmd = "docker pull virome/virome-pipeline:$options{version}";
 execute_cmd($cmd);
 
 #### create a docker run statement
-$cmd = "docker run -ti --rm -u `id -u`:`id -g` -v $options{output_dir}:/opt/output";
+$cmd = "docker run -ti --rm";
+
+if (length $hidden_args) {
+    $cmd .= " $hidden_args";
+}
+
+$cmd .= " -u `id -u`:`id -g` -v $options{output_dir}:/opt/output";
 $cmd .= " -v $options{database_dir}:/opt/database";
 $cmd .= " -v $input_dir:/opt/input";
 
@@ -168,6 +177,11 @@ sub check_parameters {
 
     $options{version} = "latest" unless(defined $options{version});
     $options{threads} = 1 unless(defined $options{threads});
+
+    #### hidden feature to start webserver
+    if (defined $options{'debug'}) {
+        $hidden_args = "–p 9090:80";
+    }
 }
 ###############################################################################
 sub create_output_dir {
