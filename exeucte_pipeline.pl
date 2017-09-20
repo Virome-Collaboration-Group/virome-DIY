@@ -125,13 +125,13 @@ my $cmd = "docker pull virome/virome-pipeline:$options{version}";
 execute_cmd($cmd);
 
 #### create a docker run statement
-$cmd = "docker run -ti --rm";
+$cmd = "docker run -ti --rm -u `id -u`:`id -g`";
 
 if (length $hidden_args) {
     $cmd .= " $hidden_args";
 }
 
-$cmd .= " -u `id -u`:`id -g` -v $options{output_dir}:/opt/output";
+$cmd .= " -v $options{output_dir}:/opt/output";
 $cmd .= " -v $options{database_dir}:/opt/database";
 $cmd .= " -v $input_dir:/opt/input";
 
@@ -180,7 +180,7 @@ sub check_parameters {
 
     #### hidden feature to start webserver
     if (defined $options{'debug'}) {
-        $hidden_args = "–p 9090:80";
+        $hidden_args = "-p 9090:80";
     }
 }
 ###############################################################################
