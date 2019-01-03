@@ -175,7 +175,7 @@ sub check_parameters {
         }
     }
 
-    $options{version} = "latest" unless(defined $options{version});
+    $options{version} = "v1.0" unless(defined $options{version});
     $options{threads} = 1 unless(defined $options{threads});
 
     #### hidden feature to start webserver
