@@ -13,6 +13,7 @@ USAGE: execute_pipeline.pl --input_file=/path/to/input_file.fasta
                            [--threads=1
                             --version=1.0
                             --test_mode
+                            --debug
                             --help]
 
 =head1 OPTIONS
@@ -45,29 +46,29 @@ B<--test_mode>
     Optional. Run container in test-mode to confirm your environment is setup.
     If running container in test-mode input_file parameter is not required.
 
+B<--debug>
+    Optional. Run container in debug mode, this will store all output, intermediate files
+    and error logs in persistent output folder.
+
 B<--help, -h>
     This help message
 
 
 =head1  DESCRIPTION
-
     Run VIROME-DIY Analysis pipeline.  Pipeline is created as a Docker image which is
     self contained and completely configured.  For list of requirements visit
 
         https://github.com/Virome-Collaboration-Group/virome-DIY
 
 =head1  INPUT
-
     Input fasta file to analyze
 
 =head1  OUTPUT
-
     A complete tarball package that can be uploaded to
     VIROME Submission portal (http://virome.dbi.udel.edu/submission) and
     view data using VIROME data exploration app (http://virome.dbi.udel.edu/app)
 
 =head1  CONTACT
-
     Jaysheel Bhavsar jaysheel@udel.edu
     Shawn Polson polson@dbi.udel.edu
     Dan Nasko dnasko@udel.edu
@@ -127,10 +128,6 @@ execute_cmd($cmd);
 #### create a docker run statement
 $cmd = "docker run -ti --rm -u `id -u`:`id -g`";
 
-if (length $hidden_args) {
-    $cmd .= " $hidden_args";
-}
-
 $cmd .= " -v $options{output_dir}:/opt/output";
 $cmd .= " -v $options{database_dir}:/opt/database";
 $cmd .= " -v $input_dir:/opt/input";
@@ -140,6 +137,10 @@ if ($options{test_mode}) {
 }
 
 $cmd .= " virome/virome-pipeline:$options{version} --threads=$options{threads}";
+
+if (length $hidden_args) {
+    $cmd .= " $hidden_args";
+}
 
 if ($options{test_mode}) {
     $cmd .= " --test-case1";
@@ -179,9 +180,10 @@ sub check_parameters {
 	#$options{version} = "v1.0.1" unless(defined $options{version});
     $options{threads} = 1 unless(defined $options{threads});
 
-    #### hidden feature to start webserver
+    #### hidden feature to debug container save all file in persistent storage space.
     if (defined $options{'debug'}) {
-        $hidden_args = "-p 9191:80";
+        $hidden_args = "--debug";
+        #$hideen_args = " -p 9191:80";
     }
 }
 ###############################################################################
