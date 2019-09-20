@@ -182,7 +182,7 @@ sub check_parameters {
 
     #### hidden feature to debug container save all file in persistent storage space.
     if (defined $options{'debug'}) {
-        $hidden_args = "--debug";
+        $hidden_args = "--debug=1";
         #$hideen_args = " -p 9191:80";
     }
 }
