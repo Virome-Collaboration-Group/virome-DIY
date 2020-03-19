@@ -13,6 +13,7 @@ USAGE: execute_pipeline.pl --input_file=/path/to/input_file.fasta
                            [--threads=1
                             --version=1.0
                             --test_mode
+                            --blast_only
                             --debug
                             --help]
 
@@ -93,6 +94,7 @@ my $results = GetOptions (\%options,
                           'threads=i',
                           'version=s',
                           'test_mode',
+                          'blast_only',
                           'debug',
                           'help|h') || pod2usage();
 
@@ -137,6 +139,10 @@ if ($options{test_mode}) {
 }
 
 $cmd .= " virome/virome-pipeline:$options{version} --threads=$options{threads}";
+
+if ($options{blast_only}){
+    $cmd .= " --blast-only";
+}
 
 if (length $hidden_args) {
     $cmd .= " $hidden_args";
