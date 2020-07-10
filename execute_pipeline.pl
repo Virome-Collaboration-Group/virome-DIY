@@ -144,16 +144,31 @@ if ($options{blast_only}){
     $cmd .= " --blast-only";
 }
 
+if ($options{post_blast_only}) {
+    $cmd .= " --post-blast-only";
+}
+
 if (length $hidden_args) {
     $cmd .= " $hidden_args";
 }
 
-if ($options{test_mode}) {
-    $cmd .= " --test-case1";
+if ($options{post_blast_only}){
+    if ((! defined($options{input_file}) || (! -d $options{input_file})){
+        print "ERROR: Input dir from --blast-only required for post-blast pipeline";
+        exit(-1);
+    }
+    else {
+        $cmd .= " $input_file"
+    }
 } else {
-    #### input_ext contains . so do add extra while recreating filename.
-    $cmd .= " /opt/input/$input_file"."$input_ext";
+    if ($options{test_mode}) {
+        $cmd .= " --test-case1";
+    } else {
+        #### input_ext contains . so do add extra while recreating filename.
+        $cmd .= " /opt/input/$input_file"."$input_ext";
+    }
 }
+
 execute_cmd($cmd);
 
 #### TODO capture and check output of docker run, if error display error and
