@@ -95,6 +95,7 @@ my $results = GetOptions (\%options,
                           'version=s',
                           'test_mode',
                           'blast_only',
+                          'post_blast_only',
                           'debug',
                           'help|h') || pod2usage();
 
